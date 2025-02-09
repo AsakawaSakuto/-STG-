@@ -3,7 +3,7 @@
 #include <math.h>
 #include <time.h>
 #include"Scene.h"
-const char kWindowTitle[] = "評価課題_STGクラス化";
+const char kWindowTitle[] = "TITLE";
 
 // Windowsアプリでのエントリーポイント(main関数)
 int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
