@@ -35,6 +35,12 @@
     <Filter Include="KamataEngine\Enemy">
       <UniqueIdentifier>{543f11c0-c30f-4f72-8226-4e729c98484c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KamataEngine\Particles">
+      <UniqueIdentifier>{7bb7819f-ddd6-42d9-bd64-976690375668}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="KamataEngine\Shake">
+      <UniqueIdentifier>{64be3c1a-4802-439e-b1cc-30512246f14f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C:\KamataEngine\DirectXGame\base\DirectXCommon.cpp">
@@ -85,6 +91,12 @@
     </ClCompile>
     <ClCompile Include="Enemy.cpp">
       <Filter>KamataEngine\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Particles.cpp">
+      <Filter>KamataEngine\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="Shake.cpp">
+      <Filter>KamataEngine\Shake</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,11 +192,17 @@
     <ClInclude Include="Player.h">
       <Filter>KamataEngine\Player</Filter>
     </ClInclude>
-    <ClInclude Include="bullet.h">
+    <ClInclude Include="Bullet.h">
       <Filter>KamataEngine\Bullet</Filter>
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>KamataEngine\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Particles.h">
+      <Filter>KamataEngine\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="Shake.h">
+      <Filter>KamataEngine\Shake</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

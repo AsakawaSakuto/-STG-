@@ -13,6 +13,9 @@ Enemy::Enemy() // コンストラクタ
 	respawnTimer = 0;     // リスポーンタイマーを初期化
 	bulletSpawnTimer = 0; // 弾のスポーンタイマーを初期化
 	isInvincible = false; // 死亡フラグを初期化 false
+	shake.pos = {};
+	shake.setRange = 61;    // シェイクの範囲
+	shake.offSetRange = 30; // シェイクのマイナス範囲
 }
 
 void Enemy::Update() // 更新処理
@@ -26,6 +29,7 @@ void Enemy::Update() // 更新処理
 	{
 		speed_.y *= -1.f; // 画面下に到達で速度を反転
 	}
+
 	bulletSpawnTimer++; // 弾の生成タイマーを回す
 	if (bulletSpawnTimer >= ENEMY_BULLET_SPAWNTIMER_MAX) // 上限に到達で生成
 	{
@@ -65,5 +69,18 @@ void Enemy::Draw() // 更新処理
 			bullet[i]->Draw();
 		}
 	}
-	DrawEllipseFloat(pos_, radius_, BLUE, true);
+	DrawEllipseFloat(pos_ + shake.pos, radius_, BLUE, true);
+}
+
+void Enemy::ShakeUpdate() // シェイクを管理
+{
+	if (respawnTimer >= 120)
+	{
+		if (respawnTimer % 6 == 0) // 6フレームごとに範囲を狭くする
+		{
+			shake.setRange -= 6;
+			shake.offSetRange -= 3;
+		}
+		shake.ShakeSpawn(); // シェイクを生成
+	}
 }

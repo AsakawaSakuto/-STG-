@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include"Obj.h"
 #include"bullet.h"
+#include"Shake.h"
 #define PLAYER_BULLET_SPAWNTIMER_MAX 15 // プレイヤーの弾のスポーンタイマーの上限
 #define PLAYER_INVICIBLETIMER_MAX 60    // プレイヤーの無敵時間の上限
 class Player : public Obj               // Objクラスを継承
@@ -17,5 +18,7 @@ public:
 	bool isInvincible;      // 無敵かどうかのフラグ
 	// Bulletクラスを包含
 	Bullet* bullet[BULLET_MAX]; // Bulletクラス
-private:
+private: 
+	void ShakeUpdate(); // シェイクを管理
+	Shake shake;        // シェイククラスを呼び出す
 };
