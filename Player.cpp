@@ -14,6 +14,9 @@ Player::Player() // コンストラクタ
 	bulletSpawnTimer = 0; //スポーンタイマーの初期化
 	invincibleTimer = 0;  //無敵時間の初期化
 	isInvincible = false; //無敵フラグの初期化 false
+	shake.pos = {};
+	shake.setRange = 61;    // シェイクの範囲
+	shake.offSetRange = 30; // シェイクのマイナス範囲
 }
 
 void Player::Update() // 更新処理
@@ -51,11 +54,14 @@ void Player::Update() // 更新処理
 	}
 	if (isInvincible) // 無敵状態なら
 	{
+		ShakeUpdate();     // シェイクをする
 		invincibleTimer++; // タイマーを回す
 		if (invincibleTimer >= PLAYER_INVICIBLETIMER_MAX) // 上限越え
 		{
-			invincibleTimer = 0;  // タイマーを0にする
-			isInvincible = false; // フラグをfalse
+			invincibleTimer = 0;    // タイマーを0にする
+			isInvincible = false;   // フラグをfalse
+			shake.setRange = 61;    // シェイクの範囲を戻す
+			shake.offSetRange = 30; // シェイクのマイナス範囲を戻す
 		}
 	}
 }
@@ -71,13 +77,26 @@ void Player::Draw() // 描画処理
 	}
 	if (isInvincible)
 	{
-		if (invincibleTimer % 6 == 0) // 無敵状態なら点滅
+		if (invincibleTimer % 2 == 0) // 無敵状態なら点滅
 		{
-			DrawEllipseFloat(pos_, radius_, RED, true);
+			DrawEllipseFloat(pos_ + shake.pos, radius_, RED, true);
 		}
 	}
 	else // 無敵状態じゃないなら描画
 	{
 		DrawEllipseFloat(pos_, radius_, RED, true);
+	}
+}
+
+void Player::ShakeUpdate() // シェイクを管理
+{
+	if (isInvincible) // 無敵状態なら
+	{
+		if (invincibleTimer % 6 == 0) // 6フレームごとに範囲を狭くする
+		{
+			shake.setRange -= 6;
+			shake.offSetRange -= 3;
+		}
+		shake.ShakeSpawn(); // シェイクを生成
 	}
 }

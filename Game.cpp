@@ -4,8 +4,7 @@ Game::Game() // コンストラクタ
 {
 	player = new Player;                                                   // playerクラスをnew 
 	enemy = new Enemy;                                                     // enemyクラスをnew
-	playerHpBarHandle = Novice::LoadTexture("./Resouces/playerHpBar.png"); // HPバーをload
-	enemyRespawnTimer = 0;                                                 // リスポーンタイマーを初期化
+	playerHpBarHandle = Novice::LoadTexture("./Resouces/playerHpBar.png"); // HPバーをload 
 }
 
 Game::~Game() // デストラクタ
@@ -43,9 +42,9 @@ void Game::Draw() // 描画処理
 	{
 		if (enemy->isInvincible)
 		{
-			if (enemyRespawnTimer >= 90 && enemyRespawnTimer % 6 == 0) // 敵がリスポーン直前に点滅
+			if (enemy->respawnTimer >= 120 && enemy->respawnTimer % 2 == 0) // 敵がリスポーン直前に点滅
 			{
-				DrawEllipseFloat({ enemy->GetPos().x,enemy->GetPos().y}, {32.f}, BLUE, true);
+				enemy->Draw();
 			}
 		}
 		else // 生きているときに描画
@@ -128,11 +127,14 @@ void Game::EnemyUpdate() // 敵の更新処理
 		// プレイヤーの弾に当たったら
 		if (enemy->isInvincible)
 		{
-			enemyRespawnTimer++; // リスポーンタイマーを回す
-			if (enemyRespawnTimer >= ENEMY_RESPAWNTIMER_MAX) // 上限越えで復活
+			enemy->respawnTimer++; // リスポーンタイマーを回す
+			enemy->ShakeUpdate();  // シェイクする			
+			if (enemy->respawnTimer >= ENEMY_RESPAWNTIMER_MAX) // 上限越えで復活
 			{
-				enemyRespawnTimer = 0;       // タイマーを0にする
-				enemy->isInvincible = false; // フラグを戻す
+				enemy->respawnTimer = 0;         // タイマーを0にする
+				enemy->isInvincible = false;   // フラグを戻す
+				enemy->shake.setRange = 61;    // シェイクの範囲
+				enemy->shake.offSetRange = 30; // シェイクのマイナス範囲
 			}
 			for (int i = 0; i < BULLET_MAX; i++) //弾を全てdeleteする
 			{

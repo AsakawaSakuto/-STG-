@@ -18,7 +18,6 @@ public:
 private:
 	// メンバ変数
 	int playerHpBarHandle; // プレイヤーのHPバー
-	int enemyRespawnTimer; // 敵のリスポーンタイマー
 	// 関数
 	void PlayerUpdate(char* keys, char* preKeys); // プレイヤーの更新処理
 	void EnemyUpdate();                           // 敵の更新処理
