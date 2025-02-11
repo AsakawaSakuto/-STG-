@@ -72,7 +72,7 @@ void Player::Draw() // 描画処理
 	{
 		if (bullet[i] != nullptr)
 		{
-			bullet[i]->Draw(); //弾がnullじゃないなら描画
+			bullet[i]->Draw(); // 弾がnullじゃないなら描画
 		}
 	}
 	if (isInvincible)
