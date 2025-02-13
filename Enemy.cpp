@@ -69,7 +69,8 @@ void Enemy::Draw() // 更新処理
 			bullet[i]->Draw();
 		}
 	}
-	DrawEllipseFloat(pos_ + shake.pos, radius_, BLUE, true);
+	Vector2 vPos = { pos_.x + shake.pos.x,pos_.y + shake.pos.y };
+	DrawEllipseFloat(vPos, radius_, BLUE, true);
 }
 
 void Enemy::ShakeUpdate() // シェイクを管理

@@ -2,6 +2,10 @@
 #include "Vector2.h"
 #include "Novice.h"
 #include "Draw.h"
+
+#include "math.h"
+#define _USE_MATH_DEFINES
+
 #define SCREEN_TOP 0.f      // 画面上端
 #define SCREEN_BOTTOM 720.f // 画面下端
 #define SCREEN_RIGHT 1280.f // 画面右端

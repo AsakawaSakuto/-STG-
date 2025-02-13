@@ -79,7 +79,8 @@ void Player::Draw() // 描画処理
 	{
 		if (invincibleTimer % 2 == 0) // 無敵状態なら点滅
 		{
-			DrawEllipseFloat(pos_ + shake.pos, radius_, RED, true);
+			Vector2 vPos = { pos_.x + shake.pos.x,pos_.y + shake.pos.y };
+			DrawEllipseFloat(vPos, radius_, RED, true);
 		}
 	}
 	else // 無敵状態じゃないなら描画
